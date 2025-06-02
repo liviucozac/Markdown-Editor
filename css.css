@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  line-height: 1.6;
+  padding: 40px 20px;
+}
+
+#main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+/* Shared styles for both editor and preview */
+#editor,
+#preview {
+  width: 80%;
+  max-width: 850px;
+  height: 80vh;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-y: auto;
+}
+
+/* Editor specific */
+#editor {
+  background-color: #1f1f1f;
+  color: #f1f1f1;
+  font-size: 1.1rem;
+  font-family: 'Courier New', Courier, monospace;
+  border: 2px solid #333;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 150, 255, 0.1);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  resize: none;
+  line-height: 1.6;
+  display: block;
+  overflow-y: auto; /* <--- Add this */
+}
+
+
+#editor:focus {
+  border-color: #0099ff;
+  box-shadow: 0 0 15px rgba(0, 150, 255, 0.4);
+}
+
+/* Preview specific */
+#preview {
+  position: relative;
+  background-color: #1f1f1f;
+  border: 2px solid #333;
+  color: #e0e0e0;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  transition: border 0.3s, box-shadow 0.3s;
+  z-index: 1;
+}
+
+#preview:hover {
+  border: 1px solid red;
+  box-shadow: 0 0 15px rgba(255, 0, 150, 0.3);
+}
+
+#preview::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  border-radius: 10px;
+  background: linear-gradient(45deg, #ff004f, #00d4ff);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+#preview:hover::before {
+  opacity: 1;
+}
+
+/* Markdown element styling inside preview */
+#preview h1,
+#preview h2,
+#preview h3 {
+  color: #81d4fa;
+  border-bottom: 1px solid #444;
+  padding-bottom: 5px;
+  margin-top: 30px;
+}
+
+#preview p {
+  margin: 15px 0;
+}
+
+#preview code {
+  background-color: #292929;
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #f48fb1;
+  font-family: monospace;
+}
+
+#preview pre {
+  background-color: #292929;
+  padding: 15px;
+  border-radius: 6px;
+  overflow-x: auto;
+  color: #d4d4d4;
+  font-family: monospace;
+}
+
+#preview a {
+  color: #64b5f6;
+  text-decoration: none;
+  border-bottom: 1px dotted #64b5f6;
+}
+
+#preview blockquote {
+  border-left: 4px solid #555;
+  padding-left: 15px;
+  color: #aaa;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+#preview img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 15px;
+}
